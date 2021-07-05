@@ -1,23 +1,30 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
-  selector: 'app-root',
+  selector   : 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls  : ['./app.component.scss']
 })
 export class AppComponent {
-  isAuth: boolean = false
+  isAuth: boolean           = false
+  lastUpdate: Promise<Date> = new Promise(((resolve) => {
+    const date = new Date()
+    setTimeout(() => {
+      resolve(date)
+    }, 2000)
+  }))
+
   appareils: any = [
     {
-      name: 'Machine à laver',
+      name  : 'Machine à laver',
       status: 'éteint'
     },
     {
-      name: 'Frigo',
+      name  : 'Frigo',
       status: 'allumé'
     },
     {
-      name: 'Ordinateur',
+      name  : 'Ordinateur',
       status: 'éteint'
     }
   ];
