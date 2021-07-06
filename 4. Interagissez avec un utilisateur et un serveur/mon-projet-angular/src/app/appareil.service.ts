@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Subject, Subscription} from "rxjs"
+import {Subject} from "rxjs"
 
 @Injectable()
 export class AppareilService {
@@ -48,10 +48,9 @@ export class AppareilService {
   }
 
   getAppareilById(id: number) {
-    const appareil = this.appareils.find((s: any) => {
+    return this.appareils.find((s: any) => {
         return s.id === id
       }
     );
-    return appareil;
   }
 }

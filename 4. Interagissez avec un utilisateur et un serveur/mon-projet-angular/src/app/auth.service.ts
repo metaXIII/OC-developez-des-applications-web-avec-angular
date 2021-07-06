@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
 @Injectable()
 export class AuthService {
@@ -7,14 +7,12 @@ export class AuthService {
 
   signIn() {
     return new Promise(
-      (resolve, reject) => {
-        setTimeout(
-          () => {
+      resolve =>
+        setTimeout(() => {
             this.isAuth = true;
             resolve(true);
           }, 2000
-        );
-      }
+        )
     );
   }
 
