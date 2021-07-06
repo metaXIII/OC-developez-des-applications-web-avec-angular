@@ -4,6 +4,7 @@
   <app-appareil *ngFor="let appareil of appareils, let i = index"
                 [appareilName]="appareil.name"
                 [appareilStatus]="appareil.status"
+                [id]="appareil.id"
                 [index]="i"></app-appareil>
 </ul>
 <button (click)="onAllumer()"

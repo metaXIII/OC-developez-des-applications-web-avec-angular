@@ -9,8 +9,12 @@ import {FormsModule} from '@angular/forms';
 import {registerLocaleData} from "@angular/common"
 import localeFr from '@angular/common/locales/fr';
 import {AppareilService} from "./appareil.service";
-import { AuthComponent } from './auth/auth.component';
-import { AppareilViewComponent } from './appareil-view/appareil-view.component'
+import {AuthComponent} from './auth/auth.component';
+import {AppareilViewComponent} from './appareil-view/appareil-view.component'
+import {AuthService} from "./auth.service";
+import { SingleAppareilComponent } from './single-appareil/single-appareil.component';
+import { FourOhFourComponent } from './four-oh-four/four-oh-four.component'
+import {AuthGuardService} from "./auth-guard.service"
 
 registerLocaleData(localeFr, 'fr');
 
@@ -20,14 +24,16 @@ registerLocaleData(localeFr, 'fr');
     MonPremierComponent,
     AppareilComponent,
     AuthComponent,
-    AppareilViewComponent
+    AppareilViewComponent,
+    SingleAppareilComponent,
+    FourOhFourComponent
   ],
   imports     : [
     BrowserModule,
     FormsModule,
     AppRoutingModule
   ],
-  providers   : [{provide: LOCALE_ID, useValue: 'fr-FR'}, AppareilService],
+  providers   : [{provide: LOCALE_ID, useValue: 'fr-FR'}, AppareilService, AuthService, AuthGuardService],
   bootstrap   : [AppComponent]
 })
 export class AppModule {
