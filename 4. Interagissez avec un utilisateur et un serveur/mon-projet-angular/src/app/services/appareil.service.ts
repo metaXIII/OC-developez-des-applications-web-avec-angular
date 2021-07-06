@@ -53,4 +53,14 @@ export class AppareilService {
       }
     );
   }
+
+  addApareil(name: string, status: string): void {
+    const appareil: any = {
+      id    : this.appareils[this.appareils.length - 1].id + 1, //get last id
+      name  : name,
+      status: status
+    }
+    this.appareils.push(appareil)
+    this.emitAppareilSubject()
+  }
 }
