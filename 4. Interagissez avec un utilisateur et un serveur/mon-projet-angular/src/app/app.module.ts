@@ -17,7 +17,9 @@ import {FourOhFourComponent} from './four-oh-four/four-oh-four.component'
 import {AuthGuardService} from "./services/auth-guard.service";
 import {EditAppareilComponent} from './edit-appareil/edit-appareil.component'
 import {UserService} from "./services/user.service";
-import {UserListComponent} from './user-list/user-list.component'
+import {UserListComponent} from './user-list/user-list.component';
+import {NewUserComponent} from './new-user/new-user.component'
+import {HttpClientModule} from "@angular/common/http"
 
 registerLocaleData(localeFr, 'fr');
 
@@ -31,9 +33,11 @@ registerLocaleData(localeFr, 'fr');
     SingleAppareilComponent,
     FourOhFourComponent,
     EditAppareilComponent,
-    UserListComponent
+    UserListComponent,
+    NewUserComponent
   ],
   imports     : [
+    HttpClientModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,

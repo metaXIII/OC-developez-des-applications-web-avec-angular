@@ -15,8 +15,8 @@ export class UserService {
     if (this.users.length > 0)
       this.usersSubject.next(this.users.slice())
     else {
-      this.users.push(new User('Will', 'Alexander', 'will@will.com',
-        'jus d\'orange', ['coder', 'boire du café']))
+      this.users.push(new User('Gaël', 'Lehchibi', 'a@a.fr',
+        'jus d\'ananas', ['coder', 'boire du café']))
       this.emitUser()
     }
   }

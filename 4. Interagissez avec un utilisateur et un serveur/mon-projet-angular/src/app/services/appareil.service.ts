@@ -1,27 +1,34 @@
 import {Injectable} from '@angular/core';
 import {Subject} from "rxjs"
+import {HttpClient} from "@angular/common/http"
 
 @Injectable()
 export class AppareilService {
-  private appareils: any = [
-    {
-      id    : 1,
-      name  : 'Machine à laver',
-      status: 'éteint'
-    },
-    {
-      id    : 2,
-      name  : 'Frigo',
-      status: 'allumé'
-    },
-    {
-      id    : 3,
-      name  : 'Ordinateur',
-      status: 'éteint'
-    }
-  ];
+  private appareils: any = []
+  private urlFirebase = "https://oc-angular-interaction-serveur-default-rtdb.europe-west1.firebasedatabase.app/appareils.json"
+  // private appareils: any = [
+  //   {
+  //     id    : 1,
+  //     name  : 'Machine à laver',
+  //     status: 'éteint'
+  //   },
+  //   {
+  //     id    : 2,
+  //     name  : 'Frigo',
+  //     status: 'allumé'
+  //   },
+  //   {
+  //     id    : 3,
+  //     name  : 'Ordinateur',
+  //     status: 'éteint'
+  //   }
+  // ];
 
   appareilsSubjects: Subject<any> = new Subject<any[]>()
+
+  constructor(private httpClient: HttpClient) {
+    this.getAppareilsFromServer()
+  }
 
   emitAppareilSubject() {
     this.appareilsSubjects.next(this.appareils.slice())
@@ -62,5 +69,25 @@ export class AppareilService {
     }
     this.appareils.push(appareil)
     this.emitAppareilSubject()
+  }
+
+  saveAppareilsToServer() {
+    this.httpClient.put(this.urlFirebase, this.appareils).subscribe(
+      () => {
+        console.log("Enregistrement effectué")
+      }, error => {
+        console.log("Erreur" + error)
+      }
+    )
+  }
+
+  getAppareilsFromServer() {
+    this.httpClient.get<any[]>(this.urlFirebase)
+      .subscribe(resp => {
+        this.appareils = resp
+        this.emitAppareilSubject()
+      }, error => {
+        console.log("erreur : " + error)
+      })
   }
 }

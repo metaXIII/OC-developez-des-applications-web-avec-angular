@@ -3,9 +3,9 @@ import {AppareilService} from "../services/appareil.service"
 import {Subscription} from "rxjs"
 
 @Component({
-  selector: 'app-appareil-view',
+  selector   : 'app-appareil-view',
   templateUrl: './appareil-view.component.html',
-  styleUrls: ['./appareil-view.component.scss']
+  styleUrls  : ['./appareil-view.component.scss']
 })
 export class AppareilViewComponent implements OnInit, OnDestroy {
   appareilsSubscription!: Subscription
@@ -19,7 +19,6 @@ export class AppareilViewComponent implements OnInit, OnDestroy {
   appareils!: any[]
 
 
-
   constructor(private appareilService: AppareilService) {
     setTimeout(() => {
       this.isAuth = true
@@ -27,7 +26,7 @@ export class AppareilViewComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.appareilsSubscription = this.appareilService.appareilsSubjects.subscribe((appareils : any) => {
+    this.appareilsSubscription = this.appareilService.appareilsSubjects.subscribe((appareils: any) => {
       this.appareils = appareils
     })
     this.appareilService.emitAppareilSubject()
@@ -44,5 +43,13 @@ export class AppareilViewComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.appareilsSubscription.unsubscribe()
+  }
+
+  onSave() {
+    this.appareilService.saveAppareilsToServer()
+  }
+
+  onFetch() {
+    this.appareilService.getAppareilsFromServer()
   }
 }
