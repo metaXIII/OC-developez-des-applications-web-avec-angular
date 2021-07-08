@@ -48,6 +48,14 @@ export class BooksService {
   }
 
   async removeBook(book: Book) {
+    if (book.photo) {
+      const storageRef = firebase.storage().refFromURL(book.photo)
+      storageRef.delete().then(() => {
+        console.log("photo removed")
+      }, err => {
+        console.log("Erreur : " + err)
+      })
+    }
     const bookIndexToRemove = this.books.findIndex((bookEl: Book) => {
       if (bookEl === book)
         return true
