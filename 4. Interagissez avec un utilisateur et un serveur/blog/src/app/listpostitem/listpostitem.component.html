@@ -1,0 +1,10 @@
+<div>
+  <h1>{{ post.title }}</h1>
+  <p> {{ post.content}} </p>
+  <div style="display: flex">
+    <button (click)="loveIt(1)" class="btn btn-success">Love it !</button>
+    <button (click)="loveIt(0)" class="btn btn-danger">Don't love it !</button>
+    <button (click)="deletePost(post)" class="btn btn-danger" style="margin-left: auto">Supprimer le post</button>
+  </div>
+  <div class="date"><span class="h3 italic color-grey">{{ post.created_at | date :'short'}}</span></div>
+</div>
